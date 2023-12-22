@@ -27,6 +27,7 @@ async function run() {
     const newfeedbackCollection = client.db("tasktoolDB").collection("newfeedbacks");
     app.post('/newtask' , async(req , res) => {
         const newtask = req.body ;
+        console.log(newtask);
         const result = await newtaskCollection.insertOne(newtask);
         res.send(result);
       })
@@ -65,7 +66,8 @@ async function run() {
              title :updateTask.title,
              date : updateTask.date,
              priority: updateTask.priority,
-             description: updateTask.description
+             description: updateTask.description,
+             status : updateTask.status 
            },
           };
           const result = await newtaskCollection.updateOne(filter , task , options);
